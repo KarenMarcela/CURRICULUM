@@ -1,0 +1,56 @@
+/* space-between= deja un espacio pero los echa hacia el borde */
+/* space.around= deja el mismo espacio en los tres lados */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    padding: 10px;
+}
+.container{
+    width: 95%;
+    border: 5px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    /* Sombra */
+    box-shadow: 0 0 10px green; 
+    display: flex;
+    /* Asigna los valores al reves (1,2,3)= (3,2,1) */
+    /* Poner las columnas al reves
+    flex-direction: column-reverse; */
+
+    /* Justificacion del contenido */
+    justify-content:center;
+    height: 200px;
+    /* Alineacion de items vertical */
+    align-items: center;
+}
+
+.element{
+
+    background-color: aqua;
+    height: 50px;
+    width: 20%;
+    color: blueviolet;
+    /* Tamaño de la letra */
+    font-size: 30px;
+    font-weight: 700;
+    border: 2px solid #000000;
+    margin: 5px;
+
+}
+
+#one{
+    background-color:green ;
+    order: 3;
+}
+
+#two{
+    background-color: bisque;
+    order: 2;
+}
+
+#three{
+    order: 1;
+}
