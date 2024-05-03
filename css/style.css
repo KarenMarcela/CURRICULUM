@@ -71,16 +71,17 @@ nav{
     width: 80px;
     height: 80px;
     /* display none para que no se vea */
-    /* display: none; */
+    display: none;
     text-align: center;
     z-index: 100;
     cursor: pointer;
     transition: color .5s ease-in;
+    color: red;
 }
-.hamburguer{
+.hamburguer > i{
     font-size: 25px;
     line-height: 80px;
-    color: red;
+    /* color: red; */
 }
 .titulospro{
     text-align: left;
