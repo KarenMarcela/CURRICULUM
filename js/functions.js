@@ -47,36 +47,67 @@ function load_page(){
 
       document.getElementById("text").innerText = "El array a calcular es: "+array_num; 
       document.getElementById("impresion").value = array_num; 
+      document.getElementById("name_search").value = nombre_form;
+
+      let hour_system = new Date();
+
+      console.log(hour_system.getDate());
+      console.log(hour_system.getDay());
+      console.log(hour_system.getFullYear());
+      console.log(hour_system.getHours());
+      console.log(hour_system.getMilliseconds());
+      console.log(hour_system.getMinutes());
+      console.log(hour_system.getMonth());
+      console.log(hour_system.getSeconds());
+      console.log(hour_system.getTime());
+
+
+      let mes = hour_system.getMonth()+1;
+      let dia = hour_system.getDay();
+      let meses =  ["Enero", "Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto", "Septiembre","Octubre","Noviembre","Diciembre"];
+      let dias =  ["Lunes", "Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
+
+      console.log("Fecha: "+hour_system.getDate()+"/"+mes+"/"+hour_system.getFullYear());
+
+      document.getElementById("hour_system"). value = hour_system;
 }
 function send_form(){
     let name      = document.getElementById("name").value;
     let last_name = document.getElementById("last_name").value;
-    if(name.length == 0 || last_name.length == 0){
+    let pass_one  = document.getElementById("pass_one").value;
+    let pass_two  = document.getElementById("pass_two").value;
+    if(name.length == 0 || last_name.length == 0 || pass_one.length == 0 || pass_two.length == 0){
         Swal.fire({
             title: "Cajas de texto vacías",
             text: "Algunas cajas de texto se encuentran vacías",
             icon: "error"
         });
-          if(name.length == 0){
-            document.getElementById("name").style.border = "2px solid red"
-          }
-          else{
-            document.getElementById("name").style.border = "2px solid green"
-          }
-          if(last_name.length == 0){
-            document.getElementById("last_name").style.border = "2px solid red"
-          }
-          else{
-            document.getElementById("last_name").style.border = "2px solid green"
-          }
-         
+          // if(name.length == 0){
+          //   document.getElementById("name").style.border = "2px solid red"
+          // }
+          // else{
+          //   document.getElementById("name").style.border = "2px solid green"
+          // }
+          // if(last_name.length == 0){
+          //   document.getElementById("last_name").style.border = "2px solid red"
+          // }
+          // else{
+          //   document.getElementById("last_name").style.border = "2px solid green"
+          // }
+    }
+    else if (pass_one != pass_two){
+      Swal.fire({
+        title: "Sus contraseñas no son iguales",
+        text: "Por favor valide sus credenciales correctamente",
+        icon: "error"
+      });
     }
     else{
         document.getElementById("print").innerText = "Su nombre es: "+name+" "+last_name;
-        document.getElementById("name").style.border = "2px solid green";
-        document.getElementById("last_name").style.border = "2px solid green";
+        console.log(isNaN(name));
     }
 }
+
 
 //ARRAYS
 var array_semana = ["Lunes", "Martes", "Mièrcoles", "Jueves", "Viernes", "Sabado", "Domingo"]
@@ -142,11 +173,18 @@ function eliminar(){
 
 function agregar(){
   let num = document.getElementById("num").value;
-  let array_add = array_numerico.push(num);
-  array_add = array_num.push(10);
-  console.log(array_add);
-  console.log(array_numerico);
-  document.getElementById("impresion" ).value = array_numerico;
+  
+
+  if(isNaN(num) == true){
+    Swal.fire("Solo se aceptan numeros");
+  }
+  else {
+    let array_add = array_numerico.push(num);
+    array_add = array_num.push(10);
+    console.log(array_add);
+    console.log(array_numerico);
+    document.getElementById("impresion" ).value = array_numerico;
+  }
 
 }
 
@@ -174,3 +212,26 @@ function limpiar(){
   document.getElementById("result").innerText= "";
 }
 
+var nombre_form = "KAREN MARCELA BAYONA MORENO" ; 
+
+function search(){
+  let nombre_buscar = document.getElementById("name_search").value;
+  // Swal.fire(nombre_buscar.toLowerCase()); 
+  // Swal.fire({
+  //   title: nombre_buscar.toLowerCase(),
+  //   text: "Alguna de las cajas de texto se encuentra vacìa",
+  //   icon: "error"
+  // });
+
+  // Swal.fire(nombre_buscar.charAt(0));
+  // let word = nombre_buscar.indexOf('e');
+  // let word = nombre_buscar.lastIndexOf('e');
+  // let word = nombre_buscar.substring(5);
+  let word = nombre_buscar.split("");
+  Swal.fire(word+"");
+  let word_com = word.join("");
+  console.log(word_com);
+
+  
+
+}
