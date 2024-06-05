@@ -13,8 +13,8 @@
 
         }
         .container{
-            height: 400px;
-            width: 300px;
+            height: 600px;
+            width: 400px;
             border-radius: 20px;
             border: 2px solid gray;
             box-shadow: 0 0 10px gray;
@@ -22,9 +22,17 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 20px;
+            gap: 8px;
         }
-        
+
+        .row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 4px;
+        }
+ 
     </style>
 </head>
 <body>
@@ -33,22 +41,40 @@
             <input type="text " id="caja_uno" placeholder="Ingrese una palabra">
             <input type="text " id="caja_dos" placeholder="Ingrese una palabra">
         </div>
+        <!-- ZONA DE IMPRESIÒN -->
         <h3>ZONA DE IMPRESIÒN</h3>
-        <div class="print_name">    </div>
+        <div id="print_name">    </div>
         <label id="cant" ></label>
-        <div class="print">    </div>
+        <div id="print"></div>
         <button onclick="enviar()">ENVIAR</button>    
-    <!-- ZONA DE IMPRESIÒN -->
+        <button id="limp" onclick="load_page()" hidden>LIMPIAR</button>    
     </div>
     <!-- CODIGO DE JS -->
     <script>
+        function load_page(){
+            document.getElementById("caja_uno").value = " ";
+            document.getElementById("caja_dos").value = " ";
+            document.getElementById("print_name").innerText = " ";
+            document.getElementById("print").innerText = " ";
+            document.getElementById("cant").innerText = " ";
+
+            document.getElementById("limp").hidden = true;
+        }
+
         function enviar(){
             let caja_uno = document.getElementById("caja_uno").value.trim();
-            let caja_dos = document.getElementById("caja_uno").value.trim();
+            let caja_dos = document.getElementById("caja_dos").value.trim();
             let concat = caja_uno + caja_dos;
 
-            document.getElementById("print_name").innerText = caja_uno.toUpperCase() + " "+caja_dos;
+            let cadena = "";
+            for(let i = 1 ; i <= 20;i++){
+                cadena += concat.length +" * "+i +" = " + (concat.length * i)+" \n";
+            }
+
+            document.getElementById("print").innerText = cadena;
+            document.getElementById("print_name").innerText = caja_uno.toUpperCase() + " "+caja_dos.toUpperCase();
             document.getElementById("cant").innerText = "Tiene "+concat.length + " caracteres.";
+            document.getElementById("limp").hidden = false;
         }
     </script>
 </body>

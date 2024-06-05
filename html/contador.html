@@ -22,15 +22,22 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 20px;
+            gap: 8px;
+        }
+        .row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 4px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <input type="number" id="caja_uno" placeholder="Ingrese una palabra">
-            <input type="number" id="caja_dos" placeholder="Ingrese una palabra">
+            <input type="text" id="caja_uno" placeholder="Ingrese una palabra">
+            <input type="text" id="caja_dos" placeholder="Ingrese una palabra">
         </div>
         <!-- ZONA DE IMPRESIÒN -->
         <h3>ZONA DE IMPRESIÒN</h3>
@@ -38,11 +45,18 @@
         <label id="cant"></label>
         <div id="print"></div>
         <button onclick="enviar()">ENVIAR</button>    
-        <button id="hid_limpiar" onclick="limpiar()">LIMPIAR</button>    
+        <button id="hid_limpiar" onclick="limpiar()" hidden>LIMPIAR</button>    
     </div>
 
-    <script>
-        
+    <script>    
+        function limpiar(){
+            document.getElementById("caja_uno").value = "";
+            document.getElementById("caja_dos").value = "";
+            document.getElementById("print_name").innerText = "";
+            document.getElementById("print").innerText = "";
+            document.getElementById("cant").innerText = "";
+            document.getElementById("hid_limpiar").hidden = true;
+        }
 
 
         function enviar(){
@@ -50,18 +64,19 @@
             let caja_dos = document.getElementById("caja_dos").value.trim();
             let concat = caja_uno + caja_dos ;
 
-            let cadena = "";
-            for(let i = 0 ; i<= caja_uno; i++ ){
-                if(i = 'e'){
-                    cadena += i + " es par "+" \n" ;
+            // let cadena = "";
+            let contador = 0;
+            for(let i=0; i< concat.length ; i++){
+                if(concat.charAt(i) == 'E'){
+                    contador += 1; 
                 }
+                
             }
 
-            document.getElementById("print").innerText = cadena;
+            document.getElementById("print").innerText = "La cantidad de 'E' encontradas es de "+ contador;
+            document.getElementById("print_name").innerText = caja_uno.toUpperCase() +" "+ caja_dos.toUpperCase();
+            document.getElementById("cant").innerText = "Tiene "+concat.length + " caracteres.";
             document.getElementById("hid_limpiar").hidden = false;
-            // document.getElementById("print_name").innerText = caja_uno.toUpperCase() +" ";
-            // alert("si funciona");
-            // document.getElementById("cant").innerText = "Tiene "+concat.length + " caracteres.";
 
         }
     </script>
